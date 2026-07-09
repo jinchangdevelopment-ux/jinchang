@@ -415,6 +415,9 @@
           <!-- Right side: Contact Form -->
           <div class="scroll-reveal contact-form-card">
             <form id="contact-form" novalidate>
+              <!-- Honeypot Field for Spam Protection (Bots will fill this, humans won't see it) -->
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+              
               <div class="form-group">
                 <label for="company" class="form-label-styled">
                   <span class="lang-zh">機構或企業全稱 *</span>
