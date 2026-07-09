@@ -310,16 +310,22 @@ function initSPA() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  // Intercept hash links
+  // Helper to resolve route
+  const getSectionFromPath = (path) => {
+    return (path === '/' || path === '') ? '#hero' : '#' + path.replace(/^\//, '');
+  };
+
+  // Intercept nav links
   ctaLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
         
-        // Keep URL clean by removing any existing hash
-        if (history.replaceState) {
-          history.replaceState(null, null, window.location.pathname + window.location.search);
+        // Use history.pushState for Path Routing
+        const newPath = (href === '#' || href === '#hero') ? '/' : '/' + href.replace('#', '');
+        if (history.pushState) {
+          history.pushState(null, null, newPath);
         }
         
         switchSection(href);
@@ -328,10 +334,17 @@ function initSPA() {
   });
 
   // Handle browser back/forward buttons
-  window.addEventListener('hashchange', () => {
-    switchSection(window.location.hash);
+  window.addEventListener('popstate', () => {
+    switchSection(getSectionFromPath(window.location.pathname));
   });
 
-  // Initial load
-  switchSection(window.location.hash);
+  // Initial load logic with sessionStorage check (404.html redirect hack)
+  const redirect = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  if (redirect && redirect !== location.href) {
+    history.replaceState(null, null, redirect);
+  }
+
+  // Initial switch
+  switchSection(getSectionFromPath(window.location.pathname));
 }
