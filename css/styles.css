@@ -20,8 +20,8 @@
   --primary-hover: #a61026;
   
   --accent: #f8f9fa; /* Off-White accent */
-  --text-main: #e2e8f0; /* Light Slate Gray */
-  --text-muted: #94a3b8; /* Medium Slate Gray */
+  --text-main: #f8fafc; /* Lighter Slate Gray */
+  --text-muted: #cbd5e1; /* Lighter Slate Gray for better contrast */
   --text-inverse: #ffffff;
 
   /* Effects & Borders */
@@ -79,10 +79,11 @@ html {
 body {
   font-family: var(--font-sans);
   background: 
-    linear-gradient(rgba(8, 9, 11, 0.5), rgba(8, 9, 11, 0.72)),
+    linear-gradient(rgba(8, 9, 11, 0.4), rgba(8, 9, 11, 0.6)),
     url('../assets/financial_skyscrapers.png') no-repeat center center fixed;
   background-size: cover;
   color: var(--text-main);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
