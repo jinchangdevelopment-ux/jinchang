@@ -303,11 +303,9 @@ function initSPA() {
       if (href && href.startsWith('#')) {
         e.preventDefault();
         
-        // Update URL hash
-        if (history.pushState) {
-          history.pushState(null, null, href === '#' ? ' ' : href);
-        } else {
-          window.location.hash = href;
+        // Keep URL clean by removing any existing hash
+        if (history.replaceState) {
+          history.replaceState(null, null, window.location.pathname + window.location.search);
         }
         
         switchSection(href);
