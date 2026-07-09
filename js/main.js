@@ -234,7 +234,16 @@ function initContactForm() {
       submitBtn.disabled = true;
       submitBtn.innerHTML = currentLang === 'en' ? '<span>Processing...</span>' : '<span>傳送中...</span>';
 
-      setTimeout(() => {
+      // TODO: 這裡要換成您部署的 Google Apps Script 網址
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-p9tzkcnVjhJv136s-pAKOiZ8yREIduA9whxC868A9QUJ7Ub9agnPqBFB4n2I07YY/exec';
+      
+      const formData = new FormData(form);
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      }).then(() => {
         successMsg.style.display = 'block';
         form.reset();
         
@@ -247,7 +256,12 @@ function initContactForm() {
         setTimeout(() => {
           successMsg.style.display = 'none';
         }, 5000);
-      }, 1200);
+      }).catch(error => {
+        console.error('Error submitting form:', error);
+        alert(currentLang === 'en' ? 'Submission failed, please try again.' : '傳送失敗，請稍後再試。');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      });
     }
   });
 }
