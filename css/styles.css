@@ -769,6 +769,96 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   10.1 Global Footprint Subsection (全球佈局)
+   -------------------------------------------------------------------------- */
+.about-global-section {
+  margin-top: 80px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 50px;
+}
+
+.about-global-section .subsection-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.about-global-section .subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.global-offices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .global-offices-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.office-card {
+  padding: 30px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color-muted);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.office-card:hover {
+  border-color: var(--border-color);
+  background-color: var(--bg-surface-opaque);
+  transform: translateY(-2px);
+}
+
+.office-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.office-country {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.office-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.office-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
    10.5 Focus Areas Section (策略投資領域)
    -------------------------------------------------------------------------- */
 .focus-grid {
