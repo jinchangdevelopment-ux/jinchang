@@ -521,7 +521,8 @@ button {
   min-height: 85vh;
   padding-top: var(--header-height);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   border-bottom: 1px solid var(--border-color);
   background: linear-gradient(to right, rgba(8, 9, 11, 0.5) 30%, rgba(8, 9, 11, 0) 100%);
 }
@@ -531,6 +532,7 @@ button {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 60px;
   align-items: center;
+  margin-bottom: 80px;
 }
 
 @media (max-width: 992px) {
@@ -769,24 +771,24 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   10.05 Focus Areas Subsection (投資領域)
+   9.5 Focus Areas Subsection (投資領域)
    -------------------------------------------------------------------------- */
-.about-focus-section {
+.hero-focus-section {
   margin-top: 80px;
   border-top: 1px solid var(--border-color);
   padding-top: 50px;
 }
 
 /* --------------------------------------------------------------------------
-   10.1 Global Footprint Subsection (全球佈局)
+   9.6 Global Footprint Subsection (全球佈局)
    -------------------------------------------------------------------------- */
-.about-global-section {
+.hero-global-section {
   margin-top: 80px;
   border-top: 1px solid var(--border-color);
   padding-top: 50px;
 }
 
-.about-global-section .subsection-title {
+.hero-global-section .subsection-title {
   font-family: var(--font-serif);
   font-size: 1.4rem;
   font-weight: 600;
@@ -799,7 +801,7 @@ button {
   padding-bottom: 8px;
 }
 
-.about-global-section .subsection-title::after {
+.hero-global-section .subsection-title::after {
   content: '';
   position: absolute;
   bottom: 0;
