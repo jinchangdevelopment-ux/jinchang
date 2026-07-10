@@ -769,6 +769,15 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   10.05 Focus Areas Subsection (投資領域)
+   -------------------------------------------------------------------------- */
+.about-focus-section {
+  margin-top: 80px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 50px;
+}
+
+/* --------------------------------------------------------------------------
    10.1 Global Footprint Subsection (全球佈局)
    -------------------------------------------------------------------------- */
 .about-global-section {
@@ -1306,7 +1315,6 @@ main {
 
 .hero-section,
 #about,
-#focus,
 #operations,
 #contact {
   position: absolute;
@@ -1324,7 +1332,6 @@ main {
 
 .hero-section.active,
 #about.active,
-#focus.active,
 #operations.active,
 #contact.active {
   position: relative;

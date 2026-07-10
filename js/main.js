@@ -270,7 +270,7 @@ function initContactForm() {
    6. Single Page Application (SPA) Section Routing Switcher
    ========================================================================== */
 function initSPA() {
-  const sections = document.querySelectorAll('.hero-section, #about, #focus, #operations, #contact');
+  const sections = document.querySelectorAll('.hero-section, #about, #operations, #contact');
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
   const logoLink = document.getElementById('logo-link');
   const ctaLinks = document.querySelectorAll('a[href^="#"]');
