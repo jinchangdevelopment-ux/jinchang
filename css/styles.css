@@ -769,6 +769,81 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   10.5 Focus Areas Section (策略投資領域)
+   -------------------------------------------------------------------------- */
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .focus-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.focus-card {
+  padding: 40px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background-color: var(--primary);
+  transition: height var(--transition-fast);
+}
+
+.focus-card:hover {
+  border-color: var(--border-color);
+  background-color: var(--bg-surface-opaque);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.focus-card:hover::before {
+  height: 100%;
+}
+
+.focus-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.focus-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.focus-card-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
    11. Core Operations Section (核心運作流程)
    -------------------------------------------------------------------------- */
 .operations-timeline {
@@ -1141,6 +1216,7 @@ main {
 
 .hero-section,
 #about,
+#focus,
 #operations,
 #contact {
   position: absolute;
@@ -1156,6 +1232,7 @@ main {
 
 .hero-section.active,
 #about.active,
+#focus.active,
 #operations.active,
 #contact.active {
   position: relative;
