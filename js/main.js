@@ -69,13 +69,13 @@ function updatePlaceholders(lang) {
     zh: {
       company: '例如：晉昌開發集團',
       name: '例如：張經理',
-      email: 'jinchangdevelopment@gmail.com',
+      email: 'jcdevsupport@jinchangdev.com',
       message: '請簡述資產類別、規模及合作意向...'
     },
     en: {
       company: 'e.g. Jin Chang Development Group',
       name: 'e.g. Director Lin',
-      email: 'jinchangdevelopment@gmail.com',
+      email: 'jcdevsupport@jinchangdev.com',
       message: 'Please briefly describe the asset type, scale, and intent...'
     }
   };
