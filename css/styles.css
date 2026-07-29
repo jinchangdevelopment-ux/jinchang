@@ -1318,7 +1318,7 @@ button {
 }
 
 /* ==========================================================================
-   16. Single Page Application (SPA) Section Routing Transitions
+   16. Multi-Page Section Layout & Display System
    ========================================================================== */
 main {
   position: relative;
@@ -1327,33 +1327,789 @@ main {
   overflow-x: hidden;
 }
 
-.hero-section,
-#about,
-#operations,
-#contact {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(15px);
-  pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s 0.4s, height 0s 0.4s;
-}
-
-.hero-section.active,
-#about.active,
-#operations.active,
-#contact.active {
+section {
   position: relative;
+  width: 100%;
   height: auto;
-  overflow: visible;
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
   pointer-events: auto;
-  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+/* ==========================================================================
+   17. Project Titan (Vietnam AI Data Center) Subpage Styles
+   ========================================================================== */
+.project-hero-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  margin-bottom: 60px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.project-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.confidential-tag {
+  border-color: #ef4444;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+.badge-tier1 {
+  border-color: #3b82f6;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.badge-location {
+  border-color: #10b981;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.badge-status {
+  border-color: #f59e0b;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.project-title small {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--primary);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.project-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+@media (max-width: 992px) {
+  .project-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.project-intro-text p {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+.project-key-indicators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .project-key-indicators {
+    grid-template-columns: 1fr;
+  }
+}
+
+.indicator-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color-muted);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+.indicator-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.indicator-pill strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.indicator-pill span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.project-hero-image-wrap {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.project-featured-img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.project-hero-image-wrap:hover .project-featured-img {
+  transform: scale(1.03);
+}
+
+.img-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+/* 5 Core Empowerment Advantages */
+.project-advantages-section {
+  margin-bottom: 70px;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .advantages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.advantage-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 30px;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.advantage-card-full {
+  grid-column: 1 / -1;
+}
+
+.advantage-card:hover {
+  border-color: var(--primary);
+  background: var(--bg-surface-opaque);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.advantage-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.advantage-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.advantage-desc {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.advantage-highlight {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding: 8px 12px;
+  background: rgba(212, 175, 55, 0.1);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Technical Specification Matrix */
+.project-specs-section {
+  margin-bottom: 70px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spec-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 32px;
+}
+
+.spec-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.spec-num {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.spec-card-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.spec-list li {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.spec-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--primary);
+  font-size: 0.8rem;
+}
+
+.spec-list li strong {
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.telecom-sub-list {
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--primary);
+  font-size: 0.86rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Fiscal Incentives Box */
+.fiscal-incentives-box {
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+}
+
+.fiscal-incentives-box h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 14px;
+}
+
+.incentive-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.incentive-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.inc-badge {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  background: #f59e0b;
+  color: #000;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.incentive-item p {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Site Options Comparison Matrix Table */
+.site-matrix-container {
+  margin-top: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 36px;
+}
+
+.site-matrix-header {
+  margin-bottom: 24px;
+}
+
+.site-matrix-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.site-matrix-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.specs-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.specs-matrix-table th,
+.specs-matrix-table td {
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.specs-matrix-table th {
+  background: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.highlight-col-a {
+  border-top: 3px solid #3b82f6 !important;
+}
+
+.highlight-col-b {
+  border-top: 3px solid #10b981 !important;
+}
+
+.pill-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.pill-a {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.pill-b {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.metric-highlight {
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+/* Geological Advantage Card */
+.geological-advantage-card {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+}
+
+.geological-advantage-card h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #34d399;
+  margin-bottom: 16px;
+}
+
+.geo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .geo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.geo-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.geo-item p {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* OPEX & Fast Track Section */
+.opex-section {
+  margin-top: 40px;
+}
+
+.opex-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.opex-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.opex-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .opex-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.opex-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+}
+
+.opex-card-highlight {
+  border-color: var(--primary);
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.opex-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.opex-card h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.opex-price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.opex-price small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.opex-card p {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.protocol-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.proto-item {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.proto-item span {
+  display: block;
+  color: var(--text-muted);
+}
+
+.proto-item strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Forward Purchase Card */
+.forward-purchase-card {
+  background: linear-gradient(135deg, rgba(20, 24, 33, 0.95), rgba(10, 12, 18, 0.98));
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.12);
+}
+
+.fp-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.fp-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.fp-body p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.fp-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Project Contact Box */
+.project-contact-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .project-contact-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.pc-subtitle {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pc-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.pc-content p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 650px;
+}
+
+.pc-email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.pc-email a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.pc-email a:hover {
+  text-decoration: underline;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   18. Legal Documents (Terms of Use & Privacy Policy) Styles
+   ========================================================================== */
+.legal-doc-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 50px;
+  box-shadow: var(--shadow-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .legal-doc-card {
+    padding: 28px 20px;
+  }
+}
+
+.legal-doc-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 24px;
+  margin-bottom: 36px;
+}
+
+.legal-doc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.legal-clause {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color-muted);
+  border-radius: var(--radius-sm);
+  padding: 24px 28px;
+  transition: border-color var(--transition-fast);
+}
+
+.legal-clause:hover {
+  border-color: var(--border-color);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.clause-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.legal-clause p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.legal-clause p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-clause code {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+

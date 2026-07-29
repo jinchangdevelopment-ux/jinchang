@@ -1,7 +1,7 @@
 /**
  * Jin Chang (晉昌國際) - Corporate JS Controller
  * Handles bilingual language switching, mobile drawer navigation, scroll reveals,
- * header scrolling transitions, and corporate form validations.
+ * header scrolling transitions, corporate form validations, and active nav highlighting.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollReveal();
   initContactForm();
-  initSPA(); // Initialize Single Page Application routing transitions
+  initActiveNav();
 });
 
 /* ==========================================================================
@@ -155,7 +155,7 @@ function initScrollReveal() {
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.08
+    threshold: 0.05
   };
 
   const revealCallback = (entries, observer) => {
@@ -170,7 +170,13 @@ function initScrollReveal() {
   const observer = new IntersectionObserver(revealCallback, observerOptions);
   
   elementsToReveal.forEach(element => {
-    observer.observe(element);
+    // Immediately reveal if near viewport
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      element.classList.add('reveal-active');
+    } else {
+      observer.observe(element);
+    }
   });
 }
 
@@ -234,7 +240,6 @@ function initContactForm() {
       submitBtn.disabled = true;
       submitBtn.innerHTML = currentLang === 'en' ? '<span>Processing...</span>' : '<span>傳送中...</span>';
 
-      // TODO: 這裡要換成您部署的 Google Apps Script 網址
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-p9tzkcnVjhJv136s-pAKOiZ8yREIduA9whxC868A9QUJ7Ub9agnPqBFB4n2I07YY/exec';
       
       const formData = new FormData(form);
@@ -267,84 +272,28 @@ function initContactForm() {
 }
 
 /* ==========================================================================
-   6. Single Page Application (SPA) Section Routing Switcher
+   6. Active Navigation Link Highlighter (Multi-Page Architecture)
    ========================================================================== */
-function initSPA() {
-  const sections = document.querySelectorAll('.hero-section, #about, #operations, #contact');
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-  const logoLink = document.getElementById('logo-link');
-  const ctaLinks = document.querySelectorAll('a[href^="#"]');
-
-  const switchSection = (targetId) => {
-    // Default to hero if empty or '#'
-    const activeId = (targetId === '#' || targetId === '' || targetId === '#hero') ? 'hero' : targetId.replace('#', '');
-    
-    let sectionFound = false;
-    sections.forEach(section => {
-      const id = section.getAttribute('id');
-      if (id === activeId || (id === 'hero' && activeId === 'hero') || (section.classList.contains('hero-section') && activeId === 'hero')) {
-        section.classList.add('active');
-        sectionFound = true;
-        
-        // Instantly trigger scroll reveal inside active section
-        const reveals = section.querySelectorAll('.scroll-reveal');
-        reveals.forEach(el => {
-          el.classList.add('reveal-active');
-        });
-      } else {
-        section.classList.remove('active');
-      }
-    });
-
-    // Update active nav state
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === `#${activeId}` || (activeId === 'hero' && href === '#')) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-
-    // Scroll back to top
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  };
-
-  // Helper to resolve route
-  const getSectionFromPath = (path) => {
-    return (path === '/' || path === '') ? '#hero' : '#' + path.replace(/^\//, '');
-  };
-
-  // Intercept nav links
-  ctaLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        
-        // Use history.pushState for Path Routing
-        const newPath = (href === '#' || href === '#hero') ? '/' : '/' + href.replace('#', '');
-        if (history.pushState) {
-          history.pushState(null, null, newPath);
-        }
-        
-        switchSection(href);
-      }
-    });
-  });
-
-  // Handle browser back/forward buttons
-  window.addEventListener('popstate', () => {
-    switchSection(getSectionFromPath(window.location.pathname));
-  });
-
-  // Initial load logic with sessionStorage check (404.html redirect hack)
-  const redirect = sessionStorage.redirect;
-  delete sessionStorage.redirect;
-  if (redirect && redirect !== location.href) {
-    history.replaceState(null, null, redirect);
+function initActiveNav() {
+  const rawPath = window.location.pathname;
+  let pageName = rawPath.split('/').pop().toLowerCase();
+  
+  if (!pageName || pageName === 'index.html' || pageName === '') {
+    pageName = 'index.html';
   }
 
-  // Initial switch
-  switchSection(getSectionFromPath(window.location.pathname));
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    const hrefPage = href.split('/').pop().toLowerCase();
+
+    if (hrefPage === pageName || (pageName === 'index.html' && hrefPage === 'index.html')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 }
